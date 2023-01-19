@@ -2,7 +2,7 @@ package supuesto.aagonzalez.proyectos.domain;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -16,9 +16,9 @@ public class Proyecto {
 
     private Double cuantia;
 
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
-    private Date fechaFin;
+    private LocalDate fechaFin;
 
     private Boolean esPublico;
 
@@ -27,6 +27,5 @@ public class Proyecto {
     private Boolean enGarantia;
 
     private List<Prorroga> prorrogas;
-
 }
  

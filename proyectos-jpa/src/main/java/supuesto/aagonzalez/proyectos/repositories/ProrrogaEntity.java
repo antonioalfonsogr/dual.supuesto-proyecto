@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -20,10 +20,10 @@ public class ProrrogaEntity {
     private Long idProrroga;
 
     @Column(name = "fecha_inicio")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column(name = "fecha_fin")
-    private Date fechaFin;
+    private LocalDate fechaFin;
 
     @Column(name = "importe")
     private Double importe;

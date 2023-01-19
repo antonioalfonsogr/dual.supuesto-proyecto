@@ -22,19 +22,19 @@ public class ProyectoRepositoryImpl implements ProyectoRepository {
 
     @Override
     public List<Proyecto> obtenerProyecto() {
-        return this.converter.toClientes((List<ProyectoEntity>) this.proyectoCrudRepository.findAll());
+        return this.converter.toProyectos((List<ProyectoEntity>) this.proyectoCrudRepository.findAll());
     }
 
     @Override
     public Optional<Proyecto> obtenerProyecto(Long idProyecto) {
         ProyectoEntity proyectoEntity = this.proyectoCrudRepository.findById(idProyecto).orElseThrow();
-        return Optional.of(this.converter.toCliente(proyectoEntity));
+        return Optional.of(this.converter.toProyecto(proyectoEntity));
     }
 
     @Override
     public Proyecto insertarProyecto(Proyecto proyecto) {
-        ProyectoEntity proyectoEntity = this.converter.toClienteEntity(proyecto);
-        return this.converter.toCliente(this.proyectoCrudRepository.save(proyectoEntity));
+        ProyectoEntity proyectoEntity = this.converter.toProyectoEntity(proyecto);
+        return this.converter.toProyecto(this.proyectoCrudRepository.save(proyectoEntity));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ProyectoRepositoryImpl implements ProyectoRepository {
         proyectoEntity.setEsPublico(proyecto.getEsPublico());
         proyectoEntity.setNumProrrogas(proyecto.getNumProrrogas());
         proyectoEntity.setEnGarantia(proyecto.getEnGarantia());
-        this.converter.toCliente(this.proyectoCrudRepository.save(proyectoEntity));
+        this.converter.toProyecto(this.proyectoCrudRepository.save(proyectoEntity));
     }
 
     @Override

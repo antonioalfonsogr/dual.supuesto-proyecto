@@ -2,16 +2,16 @@ package supuesto.aagonzalez.proyectos.domain;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class Prorroga {
 
     private Long idProrroga;
 
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
-    private Date fechaFin;
+    private LocalDate fechaFin;
 
     private Double importe;
 

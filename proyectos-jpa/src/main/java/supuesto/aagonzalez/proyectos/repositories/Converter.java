@@ -10,110 +10,116 @@ import java.util.List;
 @Component
 public class Converter {
 
-    //TODO refactorizar
+    // PROYECTOS
 
-    // CLIENTES
+    public Proyecto toProyecto(ProyectoEntity proyectoEntity) {
 
-    public Proyecto toCliente(ProyectoEntity clienteEntity) {
+        Proyecto proyecto = new Proyecto();
 
-        Proyecto cliente = new Proyecto();
-
-        cliente.setIdProyecto(clienteEntity.getIdProyecto());
-        cliente.setNombre(clienteEntity.getNombre());
-        cliente.setNif(clienteEntity.getNif());
-        cliente.setDireccion(clienteEntity.getDireccion());
-        cliente.setPais(clienteEntity.getPais());
-        if (clienteEntity.getProrrogas() != null) {
-            cliente.setRepresentantes(toRepesentantes(clienteEntity.getProrrogas()));
+        proyecto.setIdProyecto(proyectoEntity.getIdProyecto());
+        proyecto.setConcepto(proyectoEntity.getConcepto());
+        proyecto.setDescripcion(proyectoEntity.getDescripcion());
+        proyecto.setCuantia(proyectoEntity.getCuantia());
+        proyecto.setFechaInicio(proyectoEntity.getFechaInicio());
+        proyecto.setFechaFin(proyectoEntity.getFechaFin());
+        proyecto.setEsPublico(proyectoEntity.getEsPublico());
+        proyecto.setNumProrrogas(proyectoEntity.getNumProrrogas());
+        proyecto.setEnGarantia(proyectoEntity.getEnGarantia());
+        if (proyectoEntity.getProrrogas() != null) {
+            proyecto.setProrrogas(toProrrogas(proyectoEntity.getProrrogas()));
         } else {
-            cliente.setRepresentantes(new ArrayList<>());
+            proyecto.setProrrogas(new ArrayList<>());
         }
-        return cliente;
+        return proyecto;
     }
 
-    public ProyectoEntity toClienteEntity(Proyecto cliente) {
+    public ProyectoEntity toProyectoEntity(Proyecto proyecto) {
 
-        ProyectoEntity clienteEntity = new ProyectoEntity();
+        ProyectoEntity proyectoEntity = new ProyectoEntity();
 
-        clienteEntity.setIdProyecto(cliente.getIdProyecto());
-        clienteEntity.setNombre(cliente.getNombre());
-        clienteEntity.setNif(cliente.getNif());
-        clienteEntity.setDireccion(cliente.getDireccion());
-        clienteEntity.setPais(cliente.getPais());
-        if (cliente.getRepresentantes() != null) {
-            clienteEntity.setProrrogas(toRepesentantesEntities(cliente.getRepresentantes()));
+        proyectoEntity.setIdProyecto(proyecto.getIdProyecto());
+        proyectoEntity.setConcepto(proyecto.getConcepto());
+        proyectoEntity.setDescripcion(proyecto.getDescripcion());
+        proyectoEntity.setCuantia(proyecto.getCuantia());
+        proyectoEntity.setFechaInicio(proyecto.getFechaInicio());
+        proyectoEntity.setFechaFin(proyecto.getFechaFin());
+        proyectoEntity.setEsPublico(proyecto.getEsPublico());
+        proyectoEntity.setNumProrrogas(proyecto.getNumProrrogas());
+        proyectoEntity.setEnGarantia(proyectoEntity.getEnGarantia());
+        if (proyecto.getProrrogas() != null) {
+            proyectoEntity.setProrrogas(toProrrogasEntities(proyecto.getProrrogas()));
         } else {
-            clienteEntity.setProrrogas(new ArrayList<>());
+            proyectoEntity.setProrrogas(new ArrayList<>());
         }
 
-        return clienteEntity;
+        return proyectoEntity;
     }
 
-    public List<Proyecto> toClientes(List<ProyectoEntity> all) {
-        List<Proyecto> clienteList = new ArrayList<>();
+    public List<Proyecto> toProyectos(List<ProyectoEntity> all) {
+        List<Proyecto> proyectoList = new ArrayList<>();
         for (ProyectoEntity c : all) {
-            clienteList.add(toCliente(c));
+            proyectoList.add(toProyecto(c));
         }
-        return clienteList;
+        return proyectoList;
     }
 
-    public List<ProyectoEntity> toClientesEntities(List<Proyecto> all) {
-        List<ProyectoEntity> clienteEntityList = new ArrayList<>();
+    public List<ProyectoEntity> toProyectosEntities(List<Proyecto> all) {
+        List<ProyectoEntity> proyectoEntityList = new ArrayList<>();
         for (Proyecto c : all) {
-            clienteEntityList.add(toClienteEntity(c));
+            proyectoEntityList.add(toProyectoEntity(c));
         }
-        return clienteEntityList;
+        return proyectoEntityList;
     }
 
-    // REPRESENTANTES
+    // PRORROGAS
 
-    public Prorroga toRepresentante(ProrrogaEntity representanteEntity) {
+    public Prorroga toProrroga(ProrrogaEntity prorrogaEntity) {
 
-        Prorroga representante = new Prorroga();
+        Prorroga prorroga = new Prorroga();
 
-        representante.setIdProrroga(representanteEntity.getIdProrroga());
-        representante.setDescripcion(representanteEntity.getNombre());
-        representante.setCuantia(representanteEntity.getTelefono());
-        representante.setIdioma(representanteEntity.getIdioma());
-        if (representante.getProyecto() != null) {
-            representante.setProyecto(toCliente(representanteEntity.getProyecto()));
+        prorroga.setIdProrroga(prorrogaEntity.getIdProrroga());
+        prorroga.setFechaInicio(prorrogaEntity.getFechaInicio());
+        prorroga.setFechaFin(prorrogaEntity.getFechaFin());
+        prorroga.setImporte(prorrogaEntity.getImporte());
+        if (prorroga.getProyecto() != null) {
+            prorroga.setProyecto(toProyecto(prorrogaEntity.getProyecto()));
         } else {
-            representanteEntity.setProyecto(new ProyectoEntity());
+            prorrogaEntity.setProyecto(new ProyectoEntity());
         }
 
-        return representante;
+        return prorroga;
     }
 
-    public ProrrogaEntity toRepresentanteEntity(Prorroga representante) {
+    public ProrrogaEntity toProrrogaEntity(Prorroga prorroga) {
 
-        ProrrogaEntity representanteEntity = new ProrrogaEntity();
+        ProrrogaEntity prorrogaEntity = new ProrrogaEntity();
 
-        representanteEntity.setIdProrroga(representante.getIdProrroga());
-        representanteEntity.setNombre(representante.getDescripcion());
-        representanteEntity.setTelefono(representante.getCuantia());
-        representanteEntity.setIdioma(representante.getIdioma());
-        if (representante.getProyecto() != null) {
-            representanteEntity.setProyecto(toClienteEntity(representante.getProyecto()));
+        prorrogaEntity.setIdProrroga(prorroga.getIdProrroga());
+        prorrogaEntity.setFechaInicio(prorroga.getFechaInicio());
+        prorrogaEntity.setFechaFin(prorroga.getFechaFin());
+        prorrogaEntity.setImporte(prorroga.getImporte());
+        if (prorroga.getProyecto() != null) {
+            prorrogaEntity.setProyecto(toProyectoEntity(prorroga.getProyecto()));
         } else {
-            representanteEntity.setProyecto(new ProyectoEntity());
+            prorrogaEntity.setProyecto(new ProyectoEntity());
         }
 
-        return representanteEntity;
+        return prorrogaEntity;
     }
 
-    public List<Prorroga> toRepesentantes(List<ProrrogaEntity> all) {
-        List<Prorroga> representanteList = new ArrayList<>();
+    public List<Prorroga> toProrrogas(List<ProrrogaEntity> all) {
+        List<Prorroga> prorrogaList = new ArrayList<>();
         for (ProrrogaEntity r : all) {
-            representanteList.add(toRepresentante(r));
+            prorrogaList.add(toProrroga(r));
         }
-        return representanteList;
+        return prorrogaList;
     }
 
-    public List<ProrrogaEntity> toRepesentantesEntities(List<Prorroga> all) {
-        List<ProrrogaEntity> representanteEntityListList = new ArrayList<>();
+    public List<ProrrogaEntity> toProrrogasEntities(List<Prorroga> all) {
+        List<ProrrogaEntity> prorrogaEntityList = new ArrayList<>();
         for (Prorroga r : all) {
-            representanteEntityListList.add(toRepresentanteEntity(r));
+            prorrogaEntityList.add(toProrrogaEntity(r));
         }
-        return representanteEntityListList;
+        return prorrogaEntityList;
     }
 }

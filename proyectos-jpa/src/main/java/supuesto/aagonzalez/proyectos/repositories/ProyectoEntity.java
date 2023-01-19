@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -32,10 +32,10 @@ public class ProyectoEntity {
     private Double cuantia;
 
     @Column(name = "fechaInicio")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column(name = "fechaFin")
-    private Date fechaFin;
+    private LocalDate fechaFin;
 
     @Column(name = "esPublico")
     private Boolean esPublico;

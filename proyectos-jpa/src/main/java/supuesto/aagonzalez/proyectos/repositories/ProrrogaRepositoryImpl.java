@@ -24,20 +24,20 @@ public class ProrrogaRepositoryImpl implements ProrrogaRepository {
 
     @Override
     public List<Prorroga> obtenerProrrogas(Long idProyecto) {
-        return this.converter.toRepesentantes((List<ProrrogaEntity>) this.prorrogaCrudRepository.findAll());
+        return this.converter.toProrrogas((List<ProrrogaEntity>) this.prorrogaCrudRepository.findAll());
     }
 
     @Override
     public Optional<Prorroga> obtenerProrroga(Long idProrroga) {
         ProrrogaEntity prorrogaEntity = this.prorrogaCrudRepository.findById(idProrroga).orElseThrow();
-        return Optional.of(this.converter.toRepresentante(prorrogaEntity));
+        return Optional.of(this.converter.toProrroga(prorrogaEntity));
     }
 
     @Override
     public Prorroga insertarProrroga(Long idProyecto, Prorroga prorroga) {
-        ProrrogaEntity prorrogaEntity = this.converter.toRepresentanteEntity(prorroga);
+        ProrrogaEntity prorrogaEntity = this.converter.toProrrogaEntity(prorroga);
         prorrogaEntity.setProyecto(proyectoCrudRepository.findById(idProyecto).orElseThrow());
-        return this.converter.toRepresentante(this.prorrogaCrudRepository.save(prorrogaEntity));
+        return this.converter.toProrroga(this.prorrogaCrudRepository.save(prorrogaEntity));
     }
 
     @Override
