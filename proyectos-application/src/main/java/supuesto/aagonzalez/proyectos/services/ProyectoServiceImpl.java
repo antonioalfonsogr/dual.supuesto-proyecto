@@ -6,6 +6,8 @@ import supuesto.aagonzalez.proyectos.domain.Proyecto;
 import supuesto.aagonzalez.proyectos.domain.repository.ProyectoRepository;
 import supuesto.aagonzalez.proyectos.domain.service.ProyectoService;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -20,6 +22,8 @@ public class ProyectoServiceImpl implements ProyectoService {
 
     @Override
     public Proyecto insertarProyecto(Proyecto proyecto) {
+        proyecto.setNumProrrogas(0);
+        proyecto.setEnGarantia(Period.between(LocalDate.now(), proyecto.getFechaInicio()).getYears() < 1);
         return this.proyectoRepository.insertarProyecto(proyecto);
     }
 

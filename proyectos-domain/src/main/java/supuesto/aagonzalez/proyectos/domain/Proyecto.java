@@ -26,6 +26,8 @@ public class Proyecto {
 
     private Boolean enGarantia;
 
+    private Long idCliente;
+
     private List<Prorroga> prorrogas;
 }
  

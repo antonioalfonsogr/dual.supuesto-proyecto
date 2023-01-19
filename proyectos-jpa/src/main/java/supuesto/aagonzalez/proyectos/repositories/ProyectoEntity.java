@@ -46,6 +46,9 @@ public class ProyectoEntity {
     @Column(name = "enGarantia")
     private Boolean enGarantia;
 
+    @Column(name = "id_cliente")
+    private Long idCliente;
+
     @OneToMany(mappedBy = "proyecto", fetch = FetchType.LAZY, targetEntity = ProrrogaEntity.class)
     private List<ProrrogaEntity> prorrogas;
 }

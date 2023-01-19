@@ -45,7 +45,7 @@ public class Converter {
         proyectoEntity.setFechaFin(proyecto.getFechaFin());
         proyectoEntity.setEsPublico(proyecto.getEsPublico());
         proyectoEntity.setNumProrrogas(proyecto.getNumProrrogas());
-        proyectoEntity.setEnGarantia(proyectoEntity.getEnGarantia());
+        proyectoEntity.setEnGarantia(proyecto.getEnGarantia());
         if (proyecto.getProrrogas() != null) {
             proyectoEntity.setProrrogas(toProrrogasEntities(proyecto.getProrrogas()));
         } else {
